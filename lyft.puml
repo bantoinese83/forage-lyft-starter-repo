@@ -1,0 +1,140 @@
+@startuml
+
+package "Engine Types" {
+  abstract class Engine {
+    +needs_service(): bool
+  }
+  note right of Engine
+    Abstract class for all engine types.
+    All engines must implement the needs_service method.
+  end note
+
+  class CapuletEngine {
+    -current_mileage: int
+    -last_service_mileage: int
+    +needs_service(): bool
+  }
+  note right of CapuletEngine
+    CapuletEngine uses mileage to determine if service is needed.
+  end note
+
+  class SternmanEngine {
+    -warning_light_is_on: bool
+    +needs_service(): bool
+  }
+  note right of SternmanEngine
+    SternmanEngine uses a warning light to determine if service is needed.
+  end note
+
+  class WilloughbyEngine {
+    -current_mileage: int
+    -last_service_mileage: int
+    +needs_service(): bool
+  }
+  note right of WilloughbyEngine
+    WilloughbyEngine uses mileage to determine if service is needed.
+  end note
+}
+
+package "Battery Types" {
+  class Battery {
+    +needs_service(): bool
+  }
+  note right of Battery
+    Abstract class for all battery types.
+    All batteries must implement the needs_service method.
+  end note
+
+  class SpindlerBattery {
+    -last_service_date: date
+    -current_date: date
+    +needs_service(): bool
+  }
+  note right of SpindlerBattery
+    SpindlerBattery uses the date to determine if service is needed.
+  end note
+
+  class NubbinBattery {
+    -last_service_date: date
+    -current_date: date
+    +needs_service(): bool
+  }
+  note right of NubbinBattery
+    NubbinBattery uses the date to determine if service is needed.
+  end note
+}
+
+abstract class Serviceable {
+  +needs_service(): bool
+}
+note right of Serviceable
+  Abstract class for all serviceable items.
+  All serviceable items must implement the needs_service method.
+end note
+
+class Car {
+  -last_service_date: date
+  -engine: Engine
+  -battery: Battery
+  +needs_service(): bool
+}
+note right of Car
+  Abstract class for all cars.
+  All cars have an engine and a battery and must implement the needs_service method.
+end note
+
+class Calliope {
+  -engine: Engine
+  -battery: Battery
+  +needs_service(): bool
+}
+note right of Calliope
+  Calliope is a specific type of car.
+end note
+
+class Glissade {
+  -engine: Engine
+  -battery: Battery
+  +needs_service(): bool
+}
+note right of Glissade
+  Glissade is a specific type of car.
+end note
+
+class Palindrome {
+  -engine: Engine
+  +needs_service(): bool
+}
+note right of Palindrome
+  Palindrome is a specific type of car.
+end note
+
+class Rorschach {
+  -engine: Engine
+  +needs_service(): bool
+}
+note right of Rorschach
+  Rorschach is a specific type of car.
+end note
+
+class Thovex {
+  -engine: Engine
+  +needs_service(): bool
+}
+note right of Thovex
+  Thovex is a specific type of car.
+end note
+
+Serviceable <|-- Engine
+Serviceable <|-- Battery
+Car <-- Engine
+Car <-- Battery
+Calliope --> Engine
+Calliope --> Battery
+Glissade --> Engine
+Glissade --> Battery
+Palindrome --> Engine
+Rorschach --> Engine
+Thovex --> Engine
+
+@enduml
