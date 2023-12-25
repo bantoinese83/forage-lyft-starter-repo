@@ -17,21 +17,21 @@ class TestBatteryAndEngine(unittest.TestCase):
     def test_thovex_engine_should_not_be_serviced(self):
         last_service_date = datetime.today().date()
         engine = WilloughbyEngine(9999, 1)
-        car = Thovex(last_service_date, engine, 1, 1)
+        car = Thovex(last_service_date, engine, 1, 1, [0.0, 0.0, 0.0, 0.0])
 
         self.assertFalse(car.needs_service())
 
     def test_rorschach_engine_should_not_be_serviced(self):
         last_service_date = datetime.today().date()
         engine = CapuletEngine(9999, 1)
-        car = Rorschach(last_service_date, engine, 1, 1)
+        car = Rorschach(last_service_date, engine, 1, 1, [0.0, 0.0, 0.0, 0.0])
 
         self.assertFalse(car.needs_service())
 
     def test_glissade_engine_should_not_be_serviced(self):
         last_service_date = datetime.today().date()
         engine = WilloughbyEngine(10000, 1)
-        car = Glissade(last_service_date, engine, 1, 1)
+        car = Glissade(last_service_date, engine, 1, 1, [0.0, 0.0, 0.0, 0.0])
         self.assertFalse(car.needs_service())
 
     def test_calliope_battery_should_be_serviced(self):
@@ -40,7 +40,7 @@ class TestBatteryAndEngine(unittest.TestCase):
         engine = SternmanEngine(False)  # Initialize with warning_light_is_on = False
         battery = NubbinBattery(last_service_date)
 
-        car = Calliope(last_service_date, engine, battery)
+        car = Calliope(last_service_date, engine, battery, [0.0, 0.0, 0.0, 0.0])
         self.assertTrue(car.needs_service())
 
     def test_calliope_battery_should_not_be_serviced(self):
@@ -49,7 +49,7 @@ class TestBatteryAndEngine(unittest.TestCase):
         engine = SternmanEngine(False)  # Initialize with warning_light_is_on = False
         battery = NubbinBattery(last_service_date)
 
-        car = Calliope(last_service_date, engine, battery)
+        car = Calliope(last_service_date, engine, battery, [0.0, 0.0, 0.0, 0.0])
         self.assertFalse(car.needs_service())
 
     def test_calliope_engine_should_be_serviced(self):
@@ -57,7 +57,7 @@ class TestBatteryAndEngine(unittest.TestCase):
         engine = SternmanEngine(True)  # Initialize with warning_light_is_on = True
         battery = NubbinBattery(last_service_date)
 
-        car = Calliope(last_service_date, engine, battery)
+        car = Calliope(last_service_date, engine, battery, [0.0, 0.0, 0.0, 0.0])
         self.assertTrue(car.needs_service())
 
     def test_calliope_engine_should_not_be_serviced(self):
@@ -65,20 +65,20 @@ class TestBatteryAndEngine(unittest.TestCase):
         engine = SternmanEngine(False)
         battery = NubbinBattery(last_service_date)
 
-        car = Calliope(last_service_date, engine, battery)
+        car = Calliope(last_service_date, engine, battery, [0.0, 0.0, 0.0, 0.0])
         self.assertFalse(car.needs_service())
 
     def test_palindrome_engine_should_be_serviced(self):
         last_service_date = datetime.today().date()
         engine = SternmanEngine(True)
-        car = Palindrome(last_service_date, engine)
+        car = Palindrome(last_service_date, engine, [0.0, 0.0, 0.0, 0.0])
 
         self.assertTrue(car.needs_service())
 
     def test_palindrome_engine_should_not_be_serviced(self):
         last_service_date = datetime.today().date()
         engine = SternmanEngine(False)
-        car = Palindrome(last_service_date, engine)
+        car = Palindrome(last_service_date, engine, [0.0, 0.0, 0.0, 0.0])
 
         self.assertFalse(car.needs_service())
 
